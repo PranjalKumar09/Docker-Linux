@@ -1,0 +1,48 @@
+Docker Basics
+==============
+
+By docker it is easier for tester to test software from developer
+
+
+Container
+-----------
+
+    * A way to packacge an apllication  with all necessary  dependecies and configuration
+    * It can be easily shared
+    * Makes deployment & development efficient
+
+
+Architecture of Docker
+-----------------------
+
+    Hardware -> OS -> Docker Enginer -> Container
+
+    There can multiple docker
+
+    Hardware -> OS -> Docker Enginer -> Container (v1)  version 1 
+                                     -> Container (v2)  version 2
+
+
+Docker Container Vs VMs
+-----------------------
+
+    Docker Container -> Low impact on OS, very fast, low disk space usage
+    VMs              -> High impact on OS, slower , high disk space usage
+    
+    Docker Container -> Sharing, rebuilding & distribution is easy 
+    VMs              -> Sharing, rebuilding & distribution is challenging
+    
+    Docker Container -> Encapsulate apps instesad of whole machine  
+    VMs              -> Encapsulate whole machine
+
+
+Main Componnents of Docker
+--------------------------
+
+    * Dockery File
+    * Dockery Image
+    * Dockery Container
+    * Dockery Registry 
+
+See Image 
+
