@@ -1,0 +1,44 @@
+Images
+
+    docker images or docker image ls: List all images on the local machine.
+    docker pull [image]: Download an image from a Docker registry.
+    docker rmi [image]: Remove an image from the local machine.
+    docker tag [source_image] [target_image]: Create a new tag for an existing image.
+
+Containers
+
+    docker ps: List running containers.
+    docker ps -a: List all containers, including those that are stopped.
+    docker run [options] [image]: Create and start a new container from an image.
+    docker stop [container]: Stop a running container.
+    docker start [container]: Start a stopped container.
+    docker rm [container]: Remove a stopped container.
+    docker exec -it [container] [command]: Execute a command in a running container.
+
+Docker Compose
+
+    docker-compose up: Start services defined in a docker-compose.yml file.
+    docker-compose down: Stop and remove containers defined in a docker-compose.yml file.
+    docker-compose logs: View logs from services.
+
+Networks
+
+    docker network ls: List all networks.
+    docker network create [network]: Create a new network.
+    docker network rm [network]: Remove a network.
+
+Volumes
+
+    docker volume ls: List all volumes.
+    docker volume create [volume]: Create a new volume.
+    docker volume rm [volume]: Remove a volume.
+
+System
+
+    docker system df: Show disk usage for Docker.
+    docker system prune: Remove unused data (images, containers, volumes).
+
+Images and Containers (Detailed)
+
+    docker image inspect [image]: Show detailed information about an image.
+    docker container inspect [container]: Show detailed information about a container.
