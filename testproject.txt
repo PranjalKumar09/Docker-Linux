@@ -33,3 +33,6 @@ The EXPOSE 3000 instruction in your Dockerfile is used to indicate that the cont
 now to build docker image from -> docker build .
 
 here it will show all steps
+
+
+
