@@ -1,0 +1,35 @@
+npx create-react-app testapp
+
+Begin by typing:
+
+  cd testapp
+  npm start
+
+
+
+SEE the DockerFile in testapp
+
+like dockerfile ->
+
+----------------------------------------------------------------
+
+  FROM node
+
+  WORKDIR /myapp
+
+  COPY . .
+
+  RUN npm install
+
+  CMD ["npm", "start"]
+
+  EXPOSE 3000
+----------------------------------------------------------------
+
+here we doing build image from 1st 4 line then when imaege runn the rest run simutlanerously
+The EXPOSE 3000 instruction in your Dockerfile is used to indicate that the container listens on network port 3000 at runtime
+
+
+now to build docker image from -> docker build .
+
+here it will show all steps
