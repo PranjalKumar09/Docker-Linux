@@ -65,3 +65,27 @@ use -> FROM ---
     ex -> FROM node
 use version number like -> FROM <repository_name>:<n>
     ex -> FROM node:20
+
+
+
+*      docker run -p host_port:container_port <image-id>
+        p means here continer port publish a container's port to the host
+
+    host_port: The port on the host machine.
+    container_port: The port inside the Docker container.
+
+* We can't bind the same host port to multiple Docker containers simultaneously other wise port conflic error will come.
+
+* -d (Detach Mode)
+    Purpose: The -d flag is used to run the Docker container in detached mode.
+    Behavior: When a container is started in detached mode, it runs in the background, and the command prompt returns immediately.
+
+
+  -p (Port Mapping)
+    Purpose: The -p flag is used to map ports from the host machine to the Docker container.
+
+
+Doing changes to project (fixing bug, updates):  
+    we can just do new tag version 2
+
+

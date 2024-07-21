@@ -1,3 +1,4 @@
+# this is sample file for make it docker remember its name should "Dockerfile" only no extension 
 FROM node:20
 
 WORKDIR /testapp

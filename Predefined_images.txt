@@ -1,0 +1,21 @@
+
+Predefined Images
+================== 
+
+* We can pull any image also like:     docker pull python 
+    it will bring latest version 
+
+    * We can even see it in docker image ls
+    * Also   docker run python:latest
+    giving it will give nothing because its not prgram it just connection to python nothing else 
+    
+* We can also pull nginx:   docker pull nginx
+    note nginx , container port is 80   
+
+    run by -> docker run -p 8080:80 nginx:latest
+
+    now by this able to see localhost:8080
+
+    in terminal it will show that at this time , date this website is comming requested from browser and system  
+
+    

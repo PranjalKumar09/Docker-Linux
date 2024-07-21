@@ -36,3 +36,31 @@ here it will show all steps
 
 
 
+now run  command -> docker run -p 3000:3000 <image-id>
+
+we are giving acces this outside container at 3000 port 
+
+
+
+* Now if you do -> docker run -p 3001:3000 <image-id>
+  docker run -p 3002:3000 <image-id>
+  Note: You cant give same host-port container-port with =
+
+  Then now    website "localhost:3000" "localhost:3001" will also created 
+
+  Here we can also speify which version/tag of image like:
+  docker run -p 3001:3000 <image-name>:<tag>
+
+image name also can created -> docker build -t mywebappp:01 .
+
+  this "mywebappp" is name "01" is version
+
+ 
+
+ for delteing -> docker rmi mywebappp:03
+
+
+ doing changes making new image then making continer by :
+    docker run -d --rm --name "mywebapp" -p 3001:3000 mywebappp:03
+
+

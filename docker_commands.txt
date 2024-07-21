@@ -7,7 +7,7 @@ Images
 
 Containers
 
-    docker ps: List running containers.
+    docker ps: List running containers. // ps meas program status
     docker ps -a: List all containers, including those that are stopped.
     docker run [options] [image]: Create and start a new container from an image.
     docker stop [container]: Stop a running container.
@@ -42,3 +42,26 @@ Images and Containers (Detailed)
 
     docker image inspect [image]: Show detailed information about an image.
     docker container inspect [container]: Show detailed information about a container.
+
+
+
+Some Extra Commands:
+
+    * docker run -d --rm -p <host_port> :<container_port> <image_id> 
+        # this will run - detach and then remove automatically , you must stop this by ->docker stop <image_id>         inorder to remove it.
+        (even it will be removed from when you see docker ps -a)
+
+
+
+    * --name "<name>" 
+        example:  docker run -d --rm --name "mywebapp" -p 3001:3000 8ff0b0680615
+        Now in  docker ps   name will appear that name
+
+    *   docker build -t <image-name>:<tag> <path>
+
+        docker build: Initiates the build process for a Docker image.
+        -t <image-name>:<tag>: Tags the image with a specific name and tag. The tag is optional but useful for versioning.
+        <path>: Specifies the build context, which is the directory where the Dockerfile is located. This is typically the current directory (.).    
+
+    * docker rmi <image_name>:<tag>
+        to remove the this image  with this tag
