@@ -107,5 +107,18 @@ Push Image in DockerHub
     docker push <userid>/<repo-name> 
         ex-> docker push pranjalkumar09/webapp-demo:01
 
-    
+    When we push different tag/version of image in docker then we might see coming "Layer already exists" coming in terminal this shows how docker smartly link same thing
+
+
+Docker Pulling
+==============
+    To pull online docker image in remote system => docker pull <userid>/<repo-name>
+                docker pull pranjalkumar09/webapp-demo:02
+
+    Now we can even make conatiner for this 
+
+
+Docker Volume 
+=============
+
 

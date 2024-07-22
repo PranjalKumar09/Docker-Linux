@@ -3,7 +3,9 @@ Images
     docker images or docker image ls: List all images on the local machine.
     docker pull [image]: Download an image from a Docker registry.
     docker rmi [image]: Remove an image from the local machine.
+    
     docker tag [source_image] [target_image]: Create a new tag for an existing image.
+        # This even works like rename for image 
 
 Containers
 
@@ -69,4 +71,4 @@ Some Extra Commands:
     * docker run -it <image_id> 
         to run image in interactive mode like in python
 
-    
+    * docker tag
