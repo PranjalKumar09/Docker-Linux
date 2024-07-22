@@ -89,3 +89,23 @@ Doing changes to project (fixing bug, updates):
     we can just do new tag version 2
 
 
+
+Push Image in DockerHub
+======================= 
+    We can uploda our image in docker hub, other team can download from There
+
+    You can create in   hub.docker.com  and create repository 
+
+    You can push new tag -> docker push <userid>/<repo-name>:tagname 
+
+    You have to login using docker login on terminal -> docker login
+
+    To push with onlin <userid>/<repo-name> you have to first build the image the push possible 
+    Just like github you can push in docker -> 
+        ex -> docker build -t pranjalkumar09/webapp-demo:01 .
+
+    docker push <userid>/<repo-name> 
+        ex-> docker push pranjalkumar09/webapp-demo:01
+
+    
+

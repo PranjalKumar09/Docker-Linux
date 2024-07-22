@@ -1,0 +1,8 @@
+
+Python Demo Project
+===================
+
+    * Make a Dockerfile
+    *   docker build .   in that folder 
+
+    * To run -> docker run -it <image_id> 

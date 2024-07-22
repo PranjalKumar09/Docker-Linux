@@ -65,3 +65,8 @@ Some Extra Commands:
 
     * docker rmi <image_name>:<tag>
         to remove the this image  with this tag
+
+    * docker run -it <image_id> 
+        to run image in interactive mode like in python
+
+    
