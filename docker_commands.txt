@@ -34,6 +34,7 @@ Volumes
     docker volume ls: List all volumes.
     docker volume create [volume]: Create a new volume.
     docker volume rm [volume]: Remove a volume.
+    docker volume inspect [volume]: Inspect a volume.
 
 System
 
@@ -71,4 +72,16 @@ Some Extra Commands:
     * docker run -it <image_id> 
         to run image in interactive mode like in python
 
-    * docker tag
+    * docker run -it --rm -v myvolume:/myapp/ ad1add67b5af
+    -v myvolume:/myapp/:
+        The syntax is -v <volume_name>:<container_path>:
+
+            myvolume is  name of the Docker volume
+            /myapp/ is the path inside the container where the volume will be mounted. This makes the data in myvolume accessible at /myapp/ inside the container.
+
+        ad1add67b5af:
+        identifier of  Docker image
+
+
+Mount Bind
+==========
