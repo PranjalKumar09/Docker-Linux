@@ -85,3 +85,8 @@ Some Extra Commands:
 
 Mount Bind
 ==========
+    docker run -v "/path/on/host:/path/in/container" --rm image_name
+    or 
+        image name can image id 
+    docker run -v "<abosulete_path>:/path/in/container" --rm image_name
+    

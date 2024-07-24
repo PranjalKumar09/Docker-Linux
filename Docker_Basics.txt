@@ -130,3 +130,29 @@ Docker Volume
 
 Help -> by   --help   we will get any help information regardung commands.
 ==================================
+
+
+
+Mount Binds
+=========== 
+    When we want to see changes done by ourself in file and we want that it appears in file
+    like in      python_project03
+
+    new updates will not appear this , we can new update in file by     => docker run -v "/media/pranjal/New Volume/CODES/Public/Docker&Github/python_project3/servers.txt:/myapp/servers.txt" --rm dd55adccd99f 
+
+    docker run -v "/path/on/host:/path/in/container" --rm image_name
+
+
+    new changes will appear here but not in above case
+
+    also note that in this it is not docker volume so it will not visible in docker
+
+Dockerignore
+============
+    can be created in same file where dockerimage     .dockerignore
+    Like .gitignore  it supports everything 
+
+    We dont need Dockerimage generally but it is important so we can put it in .dockerignore
+
+
+
