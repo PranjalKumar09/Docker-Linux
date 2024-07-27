@@ -35,3 +35,6 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
    # note: if in running it causing error like expecting some module we can simply add that by pip (if that is python module)
    
+
+   # also in any python program put ip address in place of host 
+   

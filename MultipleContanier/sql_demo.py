@@ -3,7 +3,7 @@ import pymysql
 def create_connection():
     try:
         connection = pymysql.connect(
-            host="host.docker.internal",
+            host="172.25.164.7",
             user="root",
             password="1234",
             db="myuserinfo"

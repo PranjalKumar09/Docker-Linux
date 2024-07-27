@@ -166,7 +166,7 @@ Working with API
 
 Container with local DB 
 ======================== 
-    When we connect database to program and copy program in docker and run its container cause error to (see "Container_with_local_DB" ) 
+    When we connect database to program and copy program in docker and run its container cause error to (see "Container_with_local_DB" ) host.docker.internal
     Then to deal with this error we will change this in line6
          host="localhost"   to   host="host.docker.internal"
 
@@ -175,6 +175,40 @@ Container with local DB
 
 
 
-Project with Multiple Container
-===============================
+Docker Network
+==============
+    --network <network-name>
+
+    in any python program like in like connecting to database   in the   host name   we have put our     <container-name>
+
+
+
+Docker Compose
+==============
+    Configuration file to manage multiple container running on same machine
+    Usually composing a program
+
+    docker run -d --enve MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="userinfor" --name mysqldb --network my-net mysql 
+
+    Like this command typing it again is not efficient so to tackle it 
+        Make     docker-compose.yml    file
     
+        in this 
+            services:  #which means conatainer
+
+    Now to access images in docker-compose.yml  we have to docker-compose up 
+
+     (must delete any previous docker image with same name is name given in docker conatainer.yml)
+
+
+    docker compose down : remove docker container (without --rm)
+
+    To run it in detach mod: docker --compose up -d
+
+
+
+    Docker Compose with Multiple Container 
+    --------------------------------------
+
+        we can out multiple containers
+            what is normally 
