@@ -1,0 +1,37 @@
+All commands run in terminal
+============================
+    
+   => docker pull mysql
+
+   => docker images
+
+
+REPOSITORY                   TAG       IMAGE ID       CREATED             SIZE
+<none>                       <none>    394313c8276a   About an hour ago   1.03GB
+<none>                       <none>    bc75c37ef9dd   3 hours ago         1.02GB
+<none>                       <none>    dd55adccd99f   24 hours ago        1.02GB
+mysql                        latest    7ce93a845a8a   2 days ago          586MB
+    
+    => docker run -d --name mysqldb mysql
+
+    => docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+   # now it is stopeed automatically
+
+   => docker logs mysqldb 
+
+    You need to specify one of the following as an environment variable:
+    - MYSQL_ROOT_PASSWORD
+    - MYSQL_ALLOW_EMPTY_PASSWORD
+    - MYSQL_RANDOM_ROOT_PASSWORD
+
+   => docker run -d --env MYSQL_ROOT_PASSWORD="0907" MYSQL_DATABASE="userinfo" --name mysqldb mysql
+   # no error
+
+   => docker inspect mysqldb
+   # this help to check whether it connected to our or not
+
+
+   # note: if in running it causing error like expecting some module we can simply add that by pip (if that is python module)
+   

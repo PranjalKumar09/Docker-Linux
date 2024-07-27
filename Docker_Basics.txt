@@ -155,4 +155,26 @@ Dockerignore
     We dont need Dockerimage generally but it is important so we can put it in .dockerignore
 
 
+Working with API
+================
+    When you import some module in Docker conatainer it still didnt run , because conatainer has no external dependencies
 
+    To run external dependecies in it simply add  RUN pip install requests 
+    Then run it 
+
+    Now it will run     imported thing
+
+Container with local DB 
+======================== 
+    When we connect database to program and copy program in docker and run its container cause error to (see "Container_with_local_DB" ) 
+    Then to deal with this error we will change this in line6
+         host="localhost"   to   host="host.docker.internal"
+
+    Then in new container it will not cause error and it will acess the database
+
+
+
+
+Project with Multiple Container
+===============================
+    
