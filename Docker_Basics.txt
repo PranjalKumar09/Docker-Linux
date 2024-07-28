@@ -212,3 +212,11 @@ Docker Compose
 
         we can out multiple containers
             what is normally 
+
+        but there can dependecies means we want certian container to first 
+        then we can put   "depends-on" where we will run it if healthcheck of denpended container is done
+
+
+        When we run only single image (from docker-compose run <name>) then if it depends it run dependicies also , also it will create network (if not created by default) then by this it will run dependicies 
+
+

@@ -1,12 +1,24 @@
+# version: '3.8'  # It's a good idea to use the latest version
 
 services:
   mysqldb:
     image: 'mysql:latest'
     environment:
-      - MYSQL_ROOT_PASSWORD="root"
-      - MYSQL_DATABASE="userinfo"
+      - MYSQL_ROOT_PASSWORD=root # must check whether its password has colon or not then only  put
+      - MYSQL_DATABASE=userinfo
     container_name: "mysqldb"
+    healthcheck: 
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
-  
   mypythonapp: 
-    build: ./  # this tells directory
+    build: ./python_development  # this tells directory
+    container_name: mypyapp
+    depends_on:
+      - mysqldb
+
+      # for interactive mod when it ask input
+    stdin_open: true
+    tty: true

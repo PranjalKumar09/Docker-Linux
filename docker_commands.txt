@@ -22,6 +22,7 @@ Docker Compose
     docker-compose up: Start services defined in a docker-compose.yml file.
     docker-compose down: Stop and remove containers defined in a docker-compose.yml file.
     docker-compose logs: View logs from services.
+    docker-compose run <name>: Run single images from docker-compose 
 
 Networks
 
