@@ -4,6 +4,15 @@
 
 Welcome to the Docker-Linux project! This repository provides resources and examples related to Docker and Python development, including tutorials, sample applications, and Docker configurations. It covers key Docker concepts and practical implementations for containerized environments.
 
+## Code of Conduct
+
+Please review our [Code of Conduct](.git/CODE_OF_CONDUCT.md) to understand the community standards we follow.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](.git/LICENSE) file for details.
+
+
 ## Repository Structure
 
 The repository includes the following files and directories:
@@ -61,7 +70,13 @@ This repository provides examples and documentation on:
 
 ## Getting Started
 
-1. **Clone the Repository**:
+  **Clone the Repository**:
    ```sh
    git clone https://github.com/PranjalKumar09/Docker-Linux.git
    cd Docker-Linux
+
+## Contact
+For questions or feedback, please contact:
+
+- Email: [coderkumarshukla@gmail.com]
+- GitHub Issues: [GitHub Issues](https://github.com/PranjalKumar09/Docker-Linux/issues)
