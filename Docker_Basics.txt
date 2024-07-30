@@ -209,6 +209,7 @@ Docker Compose
 
     Docker Compose with Multiple Container 
     --------------------------------------
+        Docker compose is a config file to make your task of managing and running container easy
 
         we can out multiple containers
             what is normally 
@@ -219,4 +220,15 @@ Docker Compose
 
         When we run only single image (from docker-compose run <name>) then if it depends it run dependicies also , also it will create network (if not created by default) then by this it will run dependicies 
 
+        Network by => networks:
+
+        and if you create any python file connected with file then you can created by volumes
+            like volumes: 
+                - <path>
+
+            note path not needed for docker-compose
+
+            you can also give -port
+                    like     ports:
+                                - <host_port>:<container_port>
 
