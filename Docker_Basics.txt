@@ -7,7 +7,7 @@ By docker it is easier for tester to test software from developer
 Container
 -----------
 
-    * A way to packacge an apllication  with all necessary  dependecies and configuration
+    * A way to package an application with all necessary dependencies and configuration
     * It can be easily shared
     * Makes deployment & development efficient
 
@@ -15,49 +15,49 @@ Container
 Architecture of Docker
 -----------------------
 
-    Hardware -> OS -> Docker Enginer -> Container
+    Hardware -> OS -> Docker Engine -> Container
 
-    There can multiple docker
+    There can be multiple docker containers
 
-    Hardware -> OS -> Docker Enginer -> Container (v1)  version 1 
-                                     -> Container (v2)  version 2
+    Hardware -> OS -> Docker Engine -> Container (v1)  version 1 
+                                    -> Container (v2)  version 2
 
 
 Docker Container Vs VMs
 -----------------------
 
     Docker Container -> Low impact on OS, very fast, low disk space usage
-    VMs              -> High impact on OS, slower , high disk space usage
+    VMs              -> High impact on OS, slower, high disk space usage
     
     Docker Container -> Sharing, rebuilding & distribution is easy 
     VMs              -> Sharing, rebuilding & distribution is challenging
     
-    Docker Container -> Encapsulate apps instesad of whole machine  
+    Docker Container -> Encapsulate apps instead of whole machine  
     VMs              -> Encapsulate whole machine
 
 
-Main Componnents of Docker
+Main Components of Docker
 --------------------------
 
-    * Dockery File
-    * Dockery Image
-    * Dockery Container
-    * Dockery Registry 
+    * Docker File
+    * Docker Image
+    * Docker Container
+    * Docker Registry 
 
 See Image Docker_Basics.png
 
 
 
-Docker Reigister 
+Docker Register 
 ---------------- 
-    is centeral repository for storing & distributing Docker images
+    is central repository for storing & distributing Docker images
 
 
 
 Note ->  A registry is a centralized location that stores and manages container images, whereas a repository is a collection of related container images within a registry. 
 
 
-Also remember that doker file doesnt have extension it just written DockerFile without extension
+Also remember that docker file doesn’t have an extension it is just written DockerFile without extension
 
 
 
@@ -69,12 +69,12 @@ use version number like -> FROM <repository_name>:<n>
 
 
 *      docker run -p host_port:container_port <image-id>
-        p means here continer port publish a container's port to the host
+        p means here container port publish a container's port to the host
 
     host_port: The port on the host machine.
     container_port: The port inside the Docker container.
 
-* We can't bind the same host port to multiple Docker containers simultaneously other wise port conflic error will come.
+* We can't bind the same host port to multiple Docker containers simultaneously otherwise port conflict error will come.
 
 * -d (Detach Mode)
     Purpose: The -d flag is used to run the Docker container in detached mode.
@@ -92,7 +92,7 @@ Doing changes to project (fixing bug, updates):
 
 Push Image in DockerHub
 ======================= 
-    We can uploda our image in docker hub, other team can download from There
+    We can upload our image in docker hub, other team can download from there
 
     You can create in   hub.docker.com  and create repository 
 
@@ -100,7 +100,7 @@ Push Image in DockerHub
 
     You have to login using docker login on terminal -> docker login
 
-    To push with onlin <userid>/<repo-name> you have to first build the image the push possible 
+    To push with online <userid>/<repo-name> you have to first build the image then push possible 
     Just like github you can push in docker -> 
         ex -> docker build -t pranjalkumar09/webapp-demo:01 .
 
@@ -115,30 +115,30 @@ Docker Pulling
     To pull online docker image in remote system => docker pull <userid>/<repo-name>
                 docker pull pranjalkumar09/webapp-demo:02
 
-    Now we can even make conatiner for this 
+    Now we can even make container for this 
 
 
 Docker Volume 
 =============
-    Now if we make  contianer python program which include something like showing a file it will changes happen during just that program    ex: see python_project folder
-    run its continar -> python_project$ docker run -it --rm --name mypythonapp ad1add67b5af
+    Now if we make container python program which includes something like showing a file it will changes happen during just that program    ex: see python_project folder
+    run its container -> python_project$ docker run -it --rm --name mypythonapp ad1add67b5af
 
     So docker volume needed-> docker run -it --rm -v myvolume:/myapp/ ad1add67b5af
 
-    now all changes on file will visible , in docker volume.
+    now all changes on file will visible, in docker volume.
 
 
-Help -> by   --help   we will get any help information regardung commands.
+Help -> by   --help   we will get any help information regarding commands.
 ==================================
 
 
 
 Mount Binds
 =========== 
-    When we want to see changes done by ourself in file and we want that it appears in file
+    When we want to see changes done by ourselves in file and we want that it appears in file
     like in      python_project03
 
-    new updates will not appear this , we can new update in file by     => docker run -v "/media/pranjal/New Volume/CODES/Public/Docker&Github/python_project3/servers.txt:/myapp/servers.txt" --rm dd55adccd99f 
+    new updates will not appear this, we can new update in file by     => docker run -v "/media/pranjal/New Volume/CODES/Public/Docker&Github/python_project3/servers.txt:/myapp/servers.txt" --rm dd55adccd99f 
 
     docker run -v "/path/on/host:/path/in/container" --rm image_name
 
@@ -149,28 +149,28 @@ Mount Binds
 
 Dockerignore
 ============
-    can be created in same file where dockerimage     .dockerignore
+    can be created in same file where docker image     .dockerignore
     Like .gitignore  it supports everything 
 
-    We dont need Dockerimage generally but it is important so we can put it in .dockerignore
+    We don’t need Dockerimage generally but it is important so we can put it in .dockerignore
 
 
 Working with API
 ================
-    When you import some module in Docker conatainer it still didnt run , because conatainer has no external dependencies
+    When you import some module in Docker container it still didn’t run, because container has no external dependencies
 
-    To run external dependecies in it simply add  RUN pip install requests 
+    To run external dependencies in it simply add  RUN pip install requests 
     Then run it 
 
-    Now it will run     imported thing
+    Now it will run imported thing
 
 Container with local DB 
 ======================== 
     When we connect database to program and copy program in docker and run its container cause error to (see "Container_with_local_DB" ) host.docker.internal
-    Then to deal with this error we will change this in line6
+    Then to deal with this error we will change this in line 6
          host="localhost"   to   host="host.docker.internal"
 
-    Then in new container it will not cause error and it will acess the database
+    Then in new container it will not cause error and it will access the database
 
 
 
@@ -188,37 +188,37 @@ Docker Compose
     Configuration file to manage multiple container running on same machine
     Usually composing a program
 
-    docker run -d --enve MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="userinfor" --name mysqldb --network my-net mysql 
+    docker run -d --env MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="userinfor" --name mysqldb --network my-net mysql 
 
     Like this command typing it again is not efficient so to tackle it 
         Make     docker-compose.yml    file
     
         in this 
-            services:  #which means conatainer
+            services:  #which means container
 
     Now to access images in docker-compose.yml  we have to docker-compose up 
 
-     (must delete any previous docker image with same name is name given in docker conatainer.yml)
+     (must delete any previous docker image with same name is name given in docker container.yml)
 
 
     docker compose down : remove docker container (without --rm)
 
-    To run it in detach mod: docker --compose up -d
+    To run it in detach mode: docker-compose up -d
 
 
 
-    Docker Compose with Multiple Container 
+    Docker Compose with Multiple Containers
     --------------------------------------
-        Docker compose is a config file to make your task of managing and running container easy
+        Docker compose is a config file to make your task of managing and running containers easy
 
         we can out multiple containers
             what is normally 
 
-        but there can dependecies means we want certian container to first 
-        then we can put   "depends-on" where we will run it if healthcheck of denpended container is done
+        but there can be dependencies means we want certain container to first 
+        then we can put   "depends-on" where we will run it if health check of depended container is done
 
 
-        When we run only single image (from docker-compose run <name>) then if it depends it run dependicies also , also it will create network (if not created by default) then by this it will run dependicies 
+        When we run only single image (from docker-compose run <name>) then if it depends it run dependencies also, also it will create network (if not created by default) then by this it will run dependencies 
 
         Network by => networks:
 
@@ -231,4 +231,3 @@ Docker Compose
             you can also give -port
                     like     ports:
                                 - <host_port>:<container_port>
-

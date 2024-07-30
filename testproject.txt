@@ -62,5 +62,3 @@ image name also can created -> docker build -t mywebappp:01 .
 
  doing changes making new image then making continer by :
     docker run -d --rm --name "mywebapp" -p 3001:3000 mywebappp:03
-
-

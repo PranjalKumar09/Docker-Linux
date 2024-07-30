@@ -1,4 +1,5 @@
 Images
+======
 
     docker images or docker image ls: List all images on the local machine.
     docker pull [image]: Download an image from a Docker registry.
@@ -8,8 +9,9 @@ Images
         # This even works like rename for image 
 
 Containers
+==========
 
-    docker ps: List running containers. // ps meas program status
+    docker ps: List running containers. // ps means program status
     docker ps -a: List all containers, including those that are stopped.
     docker run [options] [image]: Create and start a new container from an image.
     docker stop [container]: Stop a running container.
@@ -18,6 +20,7 @@ Containers
     docker exec -it [container] [command]: Execute a command in a running container.
 
 Docker Compose
+==============
 
     docker-compose up: Start services defined in a docker-compose.yml file.
     docker-compose down: Stop and remove containers defined in a docker-compose.yml file.
@@ -25,12 +28,14 @@ Docker Compose
     docker-compose run <name>: Run single images from docker-compose 
 
 Networks
+========
 
     docker network ls: List all networks.
     docker network create [network]: Create a new network.
     docker network rm [network]: Remove a network.
 
 Volumes
+=======
 
     docker volume ls: List all volumes.
     docker volume create [volume]: Create a new volume.
@@ -38,56 +43,51 @@ Volumes
     docker volume inspect [volume]: Inspect a volume.
 
 System
+======
 
     docker system df: Show disk usage for Docker.
     docker system prune: Remove unused data (images, containers, volumes).
 
 Images and Containers (Detailed)
+================================
 
     docker image inspect [image]: Show detailed information about an image.
     docker container inspect [container]: Show detailed information about a container.
 
-
-
 Some Extra Commands:
+====================
 
-    * docker run -d --rm -p <host_port> :<container_port> <image_id> 
-        # this will run - detach and then remove automatically , you must stop this by ->docker stop <image_id>         inorder to remove it.
+    * docker run -d --rm -p <host_port>:<container_port> <image_id> 
+        # This will run - detach and then remove automatically. You must stop this by ->docker stop <image_id> inorder to remove it.
         (even it will be removed from when you see docker ps -a)
 
-
-
     * --name "<name>" 
-        example:  docker run -d --rm --name "mywebapp" -p 3001:3000 8ff0b0680615
-        Now in  docker ps   name will appear that name
+        example: docker run -d --rm --name "mywebapp" -p 3001:3000 8ff0b0680615
+        Now in docker ps name will appear that name
 
-    *   docker build -t <image-name>:<tag> <path>
-
+    * docker build -t <image-name>:<tag> <path>
         docker build: Initiates the build process for a Docker image.
         -t <image-name>:<tag>: Tags the image with a specific name and tag. The tag is optional but useful for versioning.
-        <path>: Specifies the build context, which is the directory where the Dockerfile is located. This is typically the current directory (.).    
+        <path>: Specifies the build context, which is the directory where the Dockerfile is located. This is typically the current directory (.)
 
     * docker rmi <image_name>:<tag>
-        to remove the this image  with this tag
+        To remove the this image with this tag
 
     * docker run -it <image_id> 
-        to run image in interactive mode like in python
+        To run image in interactive mode like in python
 
     * docker run -it --rm -v myvolume:/myapp/ ad1add67b5af
-    -v myvolume:/myapp/:
-        The syntax is -v <volume_name>:<container_path>:
-
-            myvolume is  name of the Docker volume
+        -v myvolume:/myapp/:
+            The syntax is -v <volume_name>:<container_path>:
+            myvolume is the name of the Docker volume
             /myapp/ is the path inside the container where the volume will be mounted. This makes the data in myvolume accessible at /myapp/ inside the container.
 
         ad1add67b5af:
-        identifier of  Docker image
-
+        Identifier of the Docker image
 
 Mount Bind
 ==========
     docker run -v "/path/on/host:/path/in/container" --rm image_name
     or 
-        image name can image id 
-    docker run -v "<abosulete_path>:/path/in/container" --rm image_name
-    
+    image name can be image id 
+    docker run -v "<absolute_path>:/path/in/container" --rm image_name
