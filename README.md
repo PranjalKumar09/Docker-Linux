@@ -6,11 +6,11 @@ Welcome to the Docker-Linux project! This repository provides resources and exam
 
 ## Code of Conduct
 
-Please review our [Code of Conduct](.git/CODE_OF_CONDUCT.md) to understand the community standards we follow.
+Please review our [Code of Conduct](CODE_OF_CONDUCT.md) to understand the community standards we follow.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](.git/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 
 ## Repository Structure
