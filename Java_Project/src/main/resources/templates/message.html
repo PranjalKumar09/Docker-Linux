@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::title},~{::section} )}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Error Page</title>
+</head>
+<body>
+<section>
+    <div class="container mt-5 p-5">
+        <div class="row">
+<!--            <p>This is error message</p>-->
+
+            <div class="col-md-6 p-5 text-center offset-md-3">
+               <p class="fs-3 mb-5 fw-bold ">
+                [[${msg}]]
+               </p>
+            </div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>
+

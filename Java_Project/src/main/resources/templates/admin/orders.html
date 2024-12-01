@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::title},~{::section} )}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Orders</title>
+</head>
+<body>
+<section>
+    <div class="container-fluid mt-5 p-2">
+        <div class="row p-3">
+            <div class="col-md-12">
+                <div class="text-center fs-3">All Orders</div>
+                <a href="/admin/" class="text-decoration-none"><i class="fa-solid fa-arrow-left"></i>Back</a>
+
+
+                <hr>
+                <th:block th:if="${session.errorMsg}">
+                    <p class="text-danger fw-bold text-center">[[${session.errorMsg}]]</p>
+                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                </th:block>
+                <th:block th:if="${session.succMsg}">
+                    <p class="text-success fw-bold  text-center">[[${session.succMsg}]]</p>
+                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                </th:block>
+
+                <div class="col-md-4 p-4">
+
+                    <form action="/admin/search-orders">
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Enter Order ID" name="keyword">
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-primary col" type="submit">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="table p-1 m-1">
+                    <table class="table table-bordered card-sh">
+                        <thead>
+                        <tr>
+                            <th scope="col">Order Id</th>
+                            <th scope="col">Deliver Details</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Product Details</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order : ${orderList}">
+                            <th scope="row"> [[${order.orderId}]]</th>
+                            <td>
+                                Name : [[${order.orderAddress.firstName}+' '+${order.orderAddress.lastName}]] <br>
+                                Email : [[${order.orderAddress.email}]] <br>
+                                Phone : [[${order.orderAddress.mobileNo}]] <br>
+                                Address : [[${order.orderAddress.address}]] <br>
+                                City : [[${order.orderAddress.city}]] <br>
+                                State : [[${order.orderAddress.state}]], [[${order.orderAddress.pincode}]]  <br>
+
+                            </td>
+                            <td> [[${order.orderDate}]]</td>
+                            <td> [[${order.product.title}]]</td>
+                            <td> Quantity: [[${order.quantity}]] <br> Price: [[${order.price}]]<br> Total Price:      [[${order.quantity * order.price}]] </td>
+                            <td> [[${order.status}]]</td>
+                            <td>
+                                <form action="/admin/update-order-status" method="post">
+                                    <div class="row">
+                                        <div class="col">
+                                            <select name="st" class="form-control">
+                                                <option value="">--SELECT--</option>
+                                                <option value="1">In Progress</option>
+                                                <option value="2">Order Received</option>
+                                                <option value="3">Product Packed</option>
+                                                <option value="4">Order For Status</option>
+                                                <option value="5">Delivered</option>
+                                                <option value="6">Cancelled</option>
+                                            </select>
+                                            <input type="hidden" th:value="${order.id}" name="id">
+                                        </div>
+
+                                        <div class="col">
+                                            <th:block th:if="${order.status == 'Cancelled' || order.status == 'Delivered'}">
+                                                <button class="btn btn-primary col disabled" type="button">Update</button>
+                                            </th:block>
+                                            <th:block th:unless="${order.status == 'Cancelled' || order.status == 'Delivered'}">
+                                                <button class="btn btn-primary col" type="submit">Update</button>
+                                            </th:block>
+                                        </div>
+
+
+                                    </div>
+                                </form>
+                            </td>
+
+                        </tr>
+                        </tbody>
+
+
+
+                    </table>
+                    <!--                               Start Pagination                       -->
+
+                    <div class="row" th:if="${totalElements>0}">
+                        <div class="col-md-5">Total Products: [[${totalElements}]] </div>
+                        <div class="col-md-7 text-center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <!-- Previous Button -->
+                                    <li class="page-item" th:classappend="${isFirst} ? 'disabled' : ''">
+                                        <a class="page-link" th:href="@{'/admin/orders?pageNo='+${pageNo-1}}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+
+                                    <!-- Page Numbers -->
+                                    <li th:each="i : ${#numbers.sequence(1, totalPages)}" class="page-item"
+                                        th:classappend="${i-1 == pageNo} ? 'active' : ''">
+                                        <a class="page-link" th:href="@{'/admin/orders?pageNo='+${i-1}}">[[${i}]]</a>
+                                    </li>
+
+                                    <!-- Next Button -->
+                                    <li class="page-item" th:classappend="${isLast} ? 'disabled' : ''">
+                                        <a class="page-link" th:href="@{'/admin/orders?pageNo='+${pageNo+1}}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </nav>
+                        </div>
+
+
+
+                    </div>
+
+
+                    <!--                End                Pagination                       -->
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+</section>
+</body>
+</html>

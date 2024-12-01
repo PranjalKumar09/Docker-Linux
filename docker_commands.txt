@@ -25,13 +25,16 @@ Docker Compose
     docker-compose up: Start services defined in a docker-compose.yml file.
     docker-compose down: Stop and remove containers defined in a docker-compose.yml file.
     docker-compose logs: View logs from services.
-    docker-compose run <name>: Run single images from docker-compose 
+    docker-compose run <name>: Run single images from docker-compose
+
+    docker-compose up --build:  it will not load from cache, instead make it 
 
 Networks
 ========
 
     docker network ls: List all networks.
     docker network create [network]: Create a new network.
+    docker network create [network] -d <name>: Create a new network with driver
     docker network rm [network]: Remove a network.
 
 Volumes
@@ -76,6 +79,9 @@ Some Extra Commands:
     * docker run -it <image_id> 
         To run image in interactive mode like in python
 
+    
+
+
     * docker run -it --rm -v myvolume:/myapp/ ad1add67b5af
         -v myvolume:/myapp/:
             The syntax is -v <volume_name>:<container_path>:
@@ -85,9 +91,81 @@ Some Extra Commands:
         ad1add67b5af:
         Identifier of the Docker image
 
+    *     like for java application we dont watn to  one time run, we want it keep running , So
+
+        docker run -itd <image_id>
+
 Mount Bind
 ==========
     docker run -v "/path/on/host:/path/in/container" --rm image_name
     or 
     image name can be image id 
     docker run -v "<absolute_path>:/path/in/container" --rm image_name
+
+
+Miscellaneous
+===============
+
+   $sudo usermod -aG docker $USER
+    $ newgrp docker
+
+
+adding our current user and updating that group
+
+
+    docker attach <container-id-or-name>
+    it will give live logs
+
+
+    which is now solved in docker_compose.yml
+
+
+    services:
+  java_app:
+    build:
+      context: .
+    container_name: "expensesapp"
+    networks:
+      - expenses-app-nw
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/expenses_tracker?allowPublicKeyRetrieval=true&useSSL=false"
+      SPRING_DATASOURCE_USERNAME : "root"
+      SPRING_DATASOURCE_PASSWORD : "Test@123"
+    depends_on:
+      - mysql_db
+    ports:
+      - "8080:8080"
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  mysql_db:
+    image: mysql
+    container_name: "mysql"
+    networks:
+      - expenses-app-nw
+    environment:
+      MYSQL_ROOT_PASSWORD: "Test@123"
+      MYSQL_DATABASE: "expenses_tracker"
+      MYSQL_SSL: "0"  # Disable SSL
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql  # Add volume here
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pTest@123"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+
+networks:
+  expenses-app-nw:
+volumes:
+  mysql_data:  # Declare the volume here

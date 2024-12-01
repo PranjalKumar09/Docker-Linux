@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::title},~{::section} )}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Orders</title>
+</head>
+<body>
+<section>
+    <div class="container-fluid mt-5 p-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center fs-3">My-Orders</div>
+                <th:block th:if="${session.errorMsg}">
+                    <p class="text-danger fw-bold text-center">[[${session.errorMsg}]]</p>
+                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                </th:block>
+                <th:block th:if="${session.succMsg}">
+                    <p class="text-success fw-bold  text-center">[[${session.succMsg}]]</p>
+                    <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                </th:block>
+
+
+                <div class="table">
+                    <table class="table table-bordered">
+
+                    <thead>
+                    <tr>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Product Details</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order : ${productOrderList}">
+                        <th scope="row"> [[${order.orderId}]]</th>
+                        <td> [[${order.orderDate}]]</td>
+                        <td> [[${order.product.title}]]</td>
+                        <td> Quantity: [[${order.quantity}]] <br> Price: [[${order.price}]]<br> Total Price:      [[${order.quantity * order.price}]] </td>
+                        <td> [[${order.status}]]</td>
+                        <td>
+                            <th:block th:if="${order.status != 'Cancelled'}">
+                                <a th:href="@{'/user/update-status?id='+${order.id}+'&st=6'}" class="btn btn-small btn-danger">Cancel</a>
+                            </th:block>
+                            <th:block th:unless="${order.status != 'Cancelled'}">
+                                <a href="#" class="btn btn-small btn-danger disabled">Cancel</a>
+                            </th:block>
+                        </td>
+
+                    </tr>
+                    </tbody>
+
+
+
+                    </table>
+                </div>
+
+                <!--                               Start Pagination                       -->
+
+                <div class="row" th:if="${totalElements>0}">
+                    <div class="col-md-5">Total Products: [[${totalElements}]] </div>
+                    <div class="col-md-7 text-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <!-- Previous Button -->
+                                <li class="page-item" th:classappend="${isFirst} ? 'disabled' : ''">
+                                    <a class="page-link" th:href="@{'/user/my-orders?pageNo='+${pageNo-1}}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+
+                                <!-- Page Numbers -->
+                                <li th:each="i : ${#numbers.sequence(1, totalPages)}" class="page-item"
+                                    th:classappend="${i-1 == pageNo} ? 'active' : ''">
+                                    <a class="page-link" th:href="@{'/user/my-orders?pageNo='+${i-1}}">[[${i}]]</a>
+                                </li>
+
+                                <!-- Next Button -->
+                                <li class="page-item" th:classappend="${isLast} ? 'disabled' : ''">
+                                    <a class="page-link" th:href="@{'/user/my-orders?pageNo='+${pageNo+1}}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </nav>
+                    </div>
+
+
+
+                </div>
+
+
+                <!--                End                Pagination                       -->
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+</section>
+</body>
+</html>
