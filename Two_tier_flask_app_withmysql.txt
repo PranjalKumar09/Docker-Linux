@@ -1,0 +1,90 @@
+
+
+    we have two-tier-flask-app and mysql ,
+    two-tier-flask-app requiere database also
+
+    $ docker build -t two-tier-backend .
+
+$docker images
+REPOSITORY         TAG       IMAGE ID       CREATED          SIZE
+two-tier-backend   latest    32d2a6e71d1c   11 seconds ago   390MB
+mysql              latest    56a8c14e1404   2 months ago     603MB
+
+$ docker network create two-tier -d bridge
+8a9d8c8450f0db809a51d2ca8cf3895659610e0a8d819150f28e1d5727475862
+
+
+$ docker run -d --name mysql --network two-tier -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=devops mysql
+
+
+$ docker run -d -p 5000:5000 --network two-tier -e MYSQL_HOST=mysql -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_DB=devops two-tier-backend
+
+now we can verify it by 
+
+$ docker network inspect two-tier 
+
+$ docker exec -it mysql  bash
+
+bash-5.1# mysql -u root -p
+Enter password:
+mysql> use  devops;
+mysql> select * from messages;
+
+IT SHOWED ALL MESSAGES WE PUTTED IT IN PORT:5000
+
+
+
+
+
+now i while checking , i want to do docker volume and then detlet then check does all data exist or not , 
+
+
+$ docker volume create mysql-data
+
+$docker stop mysql
+$docker rm mysql
+
+$ docker run -d --name mysql --network two-tier \
+  -v mysql-data:/var/lib/mysql \
+  -e MYSQL_ROOT_PASSWORD=root \
+  -e MYSQL_DATABASE=devops \
+  mysql
+
+
+
+
+now we will not run it multiple times instead we will do the coker compose file , see the docker-compose2.yml file in two-tier-flask-app
+
+  but there can problem like we want mysql must made first we can do this -> 
+
+
+      depends_on:
+      - mysql
+
+
+  in flask, 
+
+  but this will make sure that mysql run first , we want it complete execution then flask will run so , we will keep health check in both  , 
+
+      healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  in mysql 
+  and
+
+      restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+
+  if it not runs, it will restart simply restart
+
+  
